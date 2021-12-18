@@ -1,0 +1,8 @@
+uint16_t sheetNote[] = {Bb_5,Bb_5,SP,Bb_5, Bb_5,Bb_5,G_6,G_6, F_6,F_6,F_6,F_6, Bb_5,Bb_5,D_6,D_6,
+                        C_6,C_6,SP,C_6, C_6,C_6,Bb_5,Bb_5, D_6,D_6,D_6,D_6, D_6,SP,Bb_5,SP,
+                        Bb_5,Bb_5,SP,Bb_5, Bb_5,Bb_5,G_6,G_6, F_6,F_6,F_6,F_6, Bb_5,Bb_5,D_6,D_6,
+                        C_6,C_6,SP,C_6, C_6,C_6,Bb_5,SP, Bb_5,Bb_5,Bb_5,SP ,G_6,G_6,A_6,A_6,
+                        Bb_6,Bb_6,SP,Bb_6, Bb_6,Bb_6,D_7,D_7, G_6,G_6,G_6,G_6, F_6,F_6,F_6,F_6,
+                        C_6,C_6,SP,C_6, C_6,C_6,F_6,F_6, D_6,D_6,D_6,D_6, D_6,SP,Bb_5,SP,
+                        Bb_5,Bb_5,SP,Bb_5, Bb_5,Bb_5,G_6,G_6, F_6,F_6,F_6,F_6, Bb_5,Bb_5,D_6,D_6,
+                        C_6,C_6,SP,C_6, C_6,C_6,Bb_5,SP, Bb_5,Bb_5,Bb_5,SP};
