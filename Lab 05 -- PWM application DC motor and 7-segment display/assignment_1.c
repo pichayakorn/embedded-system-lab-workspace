@@ -19,11 +19,11 @@
 #define G           LL_GPIO_PIN_15
 #define ALL_SEG     A | B | C | D | E | F | G
 
-#define DEGIT1      LL_GPIO_PIN_0
-#define DEGIT2      LL_GPIO_PIN_1
-#define DEGIT3      LL_GPIO_PIN_2
-#define DEGIT4      LL_GPIO_PIN_3
-#define ALL_DEGIT   DEGIT1 | DEGIT2 | DEGIT3 | DEGIT4
+#define DIGIT_1     LL_GPIO_PIN_0
+#define DIGIT_2     LL_GPIO_PIN_1
+#define DIGIT_3     LL_GPIO_PIN_2
+#define DIGIT_4     LL_GPIO_PIN_3
+#define ALL_DIGIT   DIGIT_1 | DIGIT_2 | DIGIT_3 | DIGIT_4
 
 #define ZERO        A | B | C | D | E | F
 #define ONE         B | C
@@ -43,7 +43,7 @@ int main()
     LL_GPIO_InitTypeDef lct4727_InitStruct;
     uint8_t i;
     uint32_t myId[4] = { ZERO, SEVEN, ONE, ZERO};
-    uint32_t digit[4] = { DEGIT1, DEGIT2, DEGIT3, DEGIT4 };
+    uint32_t digit[4] = { DIGIT_1, DIGIT_2, DIGIT_3, DIGIT_4 };
     
     SystemClock_Config();
     
@@ -58,12 +58,12 @@ int main()
     lct4727_InitStruct.Pin = ALL_SEG;
     LL_GPIO_Init(GPIOB, &lct4727_InitStruct);
     
-    lct4727_InitStruct.Pin = ALL_DEGIT;
+    lct4727_InitStruct.Pin = ALL_DIGIT;
     LL_GPIO_Init(GPIOC, &lct4727_InitStruct);
 
     while(1) {
         for (i = 0; i < 4; ++i) {
-            LL_GPIO_ResetOutputPin(GPIOC, ALL_DEGIT);       // Write 0 to GPIO port
+            LL_GPIO_ResetOutputPin(GPIOC, ALL_DIGIT);       // Write 0 to GPIO port
             LL_GPIO_ResetOutputPin(GPIOB, ALL_SEG);         // Reset all segment (PB2, PB10 - PB15)
             LL_GPIO_SetOutputPin(GPIOB, myId[i]);
             LL_GPIO_SetOutputPin(GPIOC, digit[i]);
