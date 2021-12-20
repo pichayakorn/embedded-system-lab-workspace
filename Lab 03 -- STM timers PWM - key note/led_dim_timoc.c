@@ -40,10 +40,9 @@ void TIM_BASE_Config(void)
     TIMBASE_InitStruct.ClockDivision = LL_TIM_CLOCKDIVISION_DIV1;
     TIMBASE_InitStruct.CounterMode = LL_TIM_COUNTERMODE_UP;
     TIMBASE_InitStruct.Autoreload = TIMx_ARR - 1;
-    TIMBASE_InitStruct.Prescaler =  TIMx_PSC- 1;
+    TIMBASE_InitStruct.Prescaler =  TIMx_PSC - 1;
     
     LL_TIM_Init(TIM4, &TIMBASE_InitStruct);
-
 }
 
 void TIM_OC_GPIO_Config(void)
