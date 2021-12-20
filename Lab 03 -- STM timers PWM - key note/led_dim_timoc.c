@@ -13,8 +13,8 @@
 #include "stm32l1xx_ll_exti.h"
 
 /* For 10ms update event */
-#define TIMx_PSC			32000 
-#define TIMx_ARR			10
+#define TIMx_PSC            32000 
+#define TIMx_ARR            10
 
 void SystemClock_Config(void);
 void TIM_BASE_Config(void);
