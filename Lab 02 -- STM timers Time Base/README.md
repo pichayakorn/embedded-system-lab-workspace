@@ -1,5 +1,5 @@
-Lab 02 -- STM timers Time Base
-==============================
+Lab 02 -- STM timers : Time Base
+================================
 
 Exercises
 ---------

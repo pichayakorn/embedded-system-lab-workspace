@@ -1,5 +1,5 @@
-Lab 04 -- STM timers PWM - Music Box
-====================================
+Lab 04 -- STM timers : PWM - Music Box
+======================================
 
 Pre-requisites
 --------------
