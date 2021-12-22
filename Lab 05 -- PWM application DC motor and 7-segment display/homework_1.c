@@ -52,6 +52,7 @@ void USER_GPIO_Config(void);
 void EXTI_Config(void);
 void LCT4727_config(void);
 void display_map(void);
+uint32_t segment_num_map(uint8_t);
 
 uint32_t display[3] = { RESET, RESET, RESET };
 uint32_t digit[3] = { DIGIT_2, DIGIT_3, DIGIT_4 };
@@ -176,8 +177,6 @@ void USER_GPIO_Config(void) {
 void LCT4727_config(void)
 {
     LL_GPIO_InitTypeDef lct4727_InitStruct;
-    uint32_t myId[4] = { ZERO, SEVEN, ONE, ZERO};
-    uint32_t digit[4] = { DIGIT_1, DIGIT_2, DIGIT_3, DIGIT_4 };
 
     // Configure ltc4727js
     LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOB);
@@ -209,14 +208,35 @@ void EXTI_Config(void) {
 
 void display_map(void) {
     uint8_t level = LL_TIM_OC_GetCompareCH2(TIM3) * 100 / TIMx_ARR;
-    display[0] = level / 100;
-    display[1] = level / 10 % 10;
-    display[2] = level % 10;
+    for (uint8_t i = 0; i < 3; ++i) {
+        switch(i) {
+            case 0: display[i] = segment_num_map(level / 100);          break;
+            case 1: display[i] = segment_num_map(level / 10 % 10);      break;
+            case 2: display[i] = segment_num_map(level % 10);           break;
+        }
+    }
+}
+
+uint32_t segment_num_map(uint8_t num)
+{
+    switch(num) {
+        case 0: return ZERO;
+        case 1: return ONE;
+        case 2: return TWO;
+        case 3: return THREE;
+        case 4: return FOUR;
+        case 5: return FIVE;
+        case 6: return SIX;
+        case 7: return SEVEN;
+        case 8: return EIGHT;
+        case 9: return NINE;
+    }
+    return RESET;
 }
 
 void EXTI0_IRQHandler(void) {
     // Check if EXTI0 bit is setted by interrupt
-    if(LL_EXTI_IsActiveFlag_0_31(LL_EXTI_LINE_0) == SET) {
+    if (LL_EXTI_IsActiveFlag_0_31(LL_EXTI_LINE_0) == SET) {
         LL_EXTI_ClearFlag_0_31(LL_EXTI_LINE_0);             // Clear pending bit by writing 1
         
         uint32_t CCRx = LL_TIM_OC_GetCompareCH2(TIM3);
