@@ -1,0 +1,15 @@
+Lab 05 -- PWM application DC motor and 7-segment display
+========================================================
+
+Pre-requisites
+--------------
+
+You need to know:
+
+- How to open, build, and run codes in KEIL uVision5.
+- How to open and edit an main.c file.
+
+Getting Started
+---------------
+
+1. Download and run the code.
