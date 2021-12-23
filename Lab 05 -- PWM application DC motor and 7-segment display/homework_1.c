@@ -123,7 +123,7 @@ void TIM_OC_Config(void)
     TIM_OC_InitStruct.OCState = LL_TIM_OCSTATE_DISABLE;
     TIM_OC_InitStruct.OCMode = LL_TIM_OCMODE_PWM1;
     TIM_OC_InitStruct.OCPolarity = LL_TIM_OCPOLARITY_HIGH;
-    TIM_OC_InitStruct.CompareValue = LL_TIM_GetAutoReload(TIM3);    // 100% duty
+    TIM_OC_InitStruct.CompareValue = TIMx_ARR;    // 100% duty
     LL_TIM_OC_Init(TIM3, LL_TIM_CHANNEL_CH2, &TIM_OC_InitStruct);
     /*Interrupt Configure*/
     NVIC_SetPriority(TIM3_IRQn, 1);
@@ -207,7 +207,7 @@ void EXTI_Config(void) {
 }
 
 void display_map(void) {
-    uint8_t level = LL_TIM_OC_GetCompareCH2(TIM3) * 100 / TIMx_ARR;
+    uint8_t level = (LL_TIM_OC_GetCompareCH2(TIM3) + 1) * 100 / TIMx_ARR;
     for (uint8_t i = 0; i < 3; ++i) {
         switch(i) {
             case 0: display[i] = segment_num_map(level / 100);          break;
@@ -240,10 +240,10 @@ void EXTI0_IRQHandler(void) {
         LL_EXTI_ClearFlag_0_31(LL_EXTI_LINE_0);             // Clear pending bit by writing 1
         
         uint32_t CCRx = LL_TIM_OC_GetCompareCH2(TIM3);
-        if (CCRx == TIMx_ARR * 0.01) {
+        if (CCRx == TIMx_ARR * 0.1) {
             CCRx = TIMx_ARR;
         } else {
-            CCRx -= TIMx_ARR * 0.01;
+            CCRx -= TIMx_ARR * 0.1;
         }
         LL_TIM_OC_SetCompareCH2(TIM3, CCRx);
         display_map();
