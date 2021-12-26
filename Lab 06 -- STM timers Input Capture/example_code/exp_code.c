@@ -55,13 +55,13 @@ uint16_t uwIC2 = 0;
 uint16_t uwDiff = 0;
 uint16_t uhICIndex = 0;
 
+uint32_t TIM2CLK;
+uint32_t PSC;
+uint32_t IC1PSC;
+float period;
+
 int main()
 {
-    uint32_t TIM2CLK;
-    uint32_t PSC;
-    uint32_t IC1PSC;
-    float period;
-
     SystemClock_Config();
     TIMx_IC_Config();
     GPIO_Config();
@@ -73,7 +73,7 @@ int main()
             TIM2CLK = SystemCoreClock / PSC;
             IC1PSC = __LL_TIM_GET_ICPSC_RATIO(LL_TIM_IC_GetPrescaler(TIM2, LL_TIM_CHANNEL_CH1));
 
-            period = (uwDiff *(PSC) * 1.0) / (TIM2CLK * IC1PSC * 1.0);  // Calculate uptime period
+            period = (uwDiff*(PSC) * 1.0) / (TIM2CLK * IC1PSC * 1.0);  // Calculate uptime period
             uhICIndex = 0; 
         }
     }
