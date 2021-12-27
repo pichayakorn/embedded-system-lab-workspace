@@ -15,7 +15,6 @@ void SystemClock_Config(void);
 void TIMx_IC_Config(void)
 {
     LL_GPIO_InitTypeDef timic_gpio;
-    LL_TIM_InitTypeDef timbase;
     LL_TIM_IC_InitTypeDef timic;
     
     LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOA);
