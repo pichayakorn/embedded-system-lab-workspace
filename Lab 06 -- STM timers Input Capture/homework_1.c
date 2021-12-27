@@ -39,13 +39,12 @@
 
 void SystemClock_Config(void);
 void LCT4727_config(void);
-void display_map(float);
+void display_map(uint8_t);
 uint32_t segment_num_map(uint8_t);
 
 void TIMx_IC_Config(void)
 {
     LL_GPIO_InitTypeDef timic_gpio;
-    LL_TIM_InitTypeDef timbase;
     LL_TIM_IC_InitTypeDef timic;
     
     LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOA);
@@ -178,12 +177,12 @@ void LCT4727_config(void)
     LL_GPIO_Init(GPIOC, &lct4727_InitStruct);
 }
 
-void display_map(float distance) {
+void display_map(uint8_t distance) {
     for (uint8_t i = 0; i < 3; ++i) {
         switch(i) {
-            case 0: display[i] = segment_num_map(display / 100);          break;
-            case 1: display[i] = segment_num_map(display / 10 % 10);      break;
-            case 2: display[i] = segment_num_map(display % 10);           break;
+            case 0: display[i] = segment_num_map(distance / 100);          break;
+            case 1: display[i] = segment_num_map(distance / 10 % 10);      break;
+            case 2: display[i] = segment_num_map(distance % 10);           break;
         }
     }
 }
