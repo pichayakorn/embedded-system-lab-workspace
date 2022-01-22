@@ -23,7 +23,7 @@
 #define USARTx_BAUDRATE             115200
 #define USARTx                      USART2
 
-#define USARTx_IRQn                 SART2_IRQn
+#define USARTx_IRQn                 USART2_IRQn
 #define USARTx_Callback()           USART2_IRQHandler(void)
 
 #define MAX_CIR_BUFFER_SIZE         250
