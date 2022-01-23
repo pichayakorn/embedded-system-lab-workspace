@@ -10,14 +10,12 @@
 /* DWT driver included */
 #include "dwt_delay.h"
 
-/*already implemented */
 void SystemClock_Config(void);
 void OW_WriteBit(uint8_t d);
 uint8_t OW_ReadBit(void);
 void DS1820_GPIO_Configure(void);
 uint8_t DS1820_ResetPulse(void);
 
-/*haven't been implemented yet!*/
 void OW_Master(void);
 void OW_Slave(void);
 void OW_WriteByte(uint8_t data);
