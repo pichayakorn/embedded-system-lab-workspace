@@ -35,30 +35,30 @@ int main()
 
     while(1)
     {
-        //Send reset pulse
+        // Send reset pulse
         DS1820_ResetPulse();
         DWT_Delay(1);
-        //Send 'Skip Rom (0xCC)' command
+        // Send 'Skip Rom (0xCC)' command
         OW_WriteByte(0xCC);
-        //Send 'Temp Convert (0x44)' command
+        // Send 'Temp Convert (0x44)' command
         OW_WriteByte(0x44);
-        //Delay at least 200ms (typical conversion time)
+        // Delay at least 200ms (typical conversion time)
         DWT_Delay(800);
         
-        //Send reset pulse
+        // Send reset pulse
         DS1820_ResetPulse();
         DWT_Delay(1);
-        //Send 'Skip Rom (0xCC)' command
+        // Send 'Skip Rom (0xCC)' command
         OW_WriteByte(0xCC);
-        //Send 'Read Scractpad (0xBE)' command
+        // Send 'Read Scractpad (0xBE)' command
         OW_WriteByte(0xBE);
         
-        //Read byte 1 (Temperature data in LSB)
+        // Read byte 1 (Temperature data in LSB)
         lsb = OW_ReadByte();
-        //Read byte 2 (Temperature data in MSB)
+        // Read byte 2 (Temperature data in MSB)
         msb = OW_ReadByte();
         
-        //Convert to readable floating point temperature
+        // Convert to readable floating point temperature
         temp = (msb << 8) | lsb;
         real_temp = (float)temp / 16;
         
@@ -96,16 +96,16 @@ uint8_t OW_ReadBit(void)
 
 void DS1820_GPIO_Configure(void)
 {
-    //LL_GPIO_InitTypeDef ds1820_io;
+    // LL_GPIO_InitTypeDef ds1820_io;
     
     LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOB);
     
-    //ds1820_io.Mode = LL_GPIO_MODE_OUTPUT;
-    //ds1820_io.Pin = LL_GPIO_PIN_6;
-    //ds1820_io.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
-    //ds1820_io.Pull = LL_GPIO_PULL_NO;
-    //ds1820_io.Speed = LL_GPIO_SPEED_FREQ_LOW;
-    //LL_GPIO_Init(GPIOB, &ds1820_io);
+    // ds1820_io.Mode = LL_GPIO_MODE_OUTPUT;
+    // ds1820_io.Pin = LL_GPIO_PIN_6;
+    // ds1820_io.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
+    // ds1820_io.Pull = LL_GPIO_PULL_NO;
+    // ds1820_io.Speed = LL_GPIO_SPEED_FREQ_LOW;
+    // LL_GPIO_Init(GPIOB, &ds1820_io);
 }
 
 uint8_t DS1820_ResetPulse(void)
@@ -136,7 +136,6 @@ void OW_Master(void) {
     ds1820_io.Speed = LL_GPIO_SPEED_FREQ_LOW;
     ds1820_io.Pin = LL_GPIO_PIN_6;
     LL_GPIO_Init(GPIOB, &ds1820_io);
-    
 }
 
 void OW_Slave(void) {
