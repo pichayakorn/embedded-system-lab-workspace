@@ -26,7 +26,7 @@ uint8_t ESP8266_SendCmd(uint8_t* cmd)
         (ESP_USART_LOWLEVEL_Recv(resp, idx) != 1)?(idx = (idx + 1) % MAX_RESP_BUFFER_SIZE):(idx);		
         if(strstr((const char*)resp, "OK"))
         {
-        return 0;
+            return 0;
         }
     }
 }
