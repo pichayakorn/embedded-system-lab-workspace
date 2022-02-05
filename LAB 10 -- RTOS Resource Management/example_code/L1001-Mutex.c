@@ -59,6 +59,7 @@ __task void tskProducer (void)
       add_amount(10);
     }
 }
+
 __task void tskConsumer (void)
 {
     for(;;)
@@ -66,6 +67,7 @@ __task void tskConsumer (void)
       rem_amount(10);
     }
 }
+
 void add_amount (int amt)
 {
     /* Protect mutual access by mutex */
@@ -75,6 +77,7 @@ void add_amount (int amt)
     /* Return mutex after done processing */
     os_mut_release(&mut_res_amt);
 }
+
 void rem_amount (int amt)
 {
     /* Protect mutual access by mutex */
@@ -211,7 +214,3 @@ void assert_failed(uint8_t *file, uint32_t line)
 /**
   * @}
   */
-
-
-
-
