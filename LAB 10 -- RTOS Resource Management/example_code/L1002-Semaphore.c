@@ -129,6 +129,7 @@ void SystemClock_Config(void)
         {
         };
     }
+    
         
     /* Main PLL configuration and activation */
     LL_RCC_PLL_ConfigDomain_SYS(LL_RCC_PLLSOURCE_HSI, LL_RCC_PLL_MUL_6, LL_RCC_PLL_DIV_3);
